@@ -24,6 +24,24 @@ app_license = "mit"
 # Includes in <head>
 # ------------------
 
+
+# Add these lines to your existing hooks.py file
+# Page configurations
+# App include JS and CSS
+# app_include_js = [
+#     "/assets/kk_new_app/js/capacity_planning.js"
+# ]
+
+# app_include_css = [
+#     "/assets/kk_new_app/css/capacity_planning.css"
+# ]
+
+# # List of pages
+# page_js = {
+#     "capacity-planning": "public/js/capacity_planning.js"
+# }
+
+# This will allow the FullCalendar library to be loaded via CDN in our JS file
 # include js, css files in header of desk.html
 # app_include_css = "/assets/kk_new_app/css/kk_new_app.css"
 # app_include_js = "/assets/kk_new_app/js/kk_new_app.js"
@@ -40,8 +58,14 @@ app_license = "mit"
 # webform_include_css = {"doctype": "public/css/doctype.css"}
 
 # include js in page
-# page_js = {"page" : "public/js/file.js"}
+# Register the page
+# page_js = {
+#     "work_order_calendar": "/assets/kk_new_app/js/work_order_calendar.js"
+# }
 
+doctype_js = {
+    "Work Order": "kk_new_app/page/work_order_calendar/work_order_custom.js"
+}
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
@@ -55,7 +79,14 @@ app_license = "mit"
 
 # Home Pages
 # ----------
-
+# Add this to register the desk page
+# desk_pages = {
+#     "work_order_calendar": {
+#         "title": "Work Order Calendar",
+#         "route": "work_order_calendar",
+#         "icon": "calendar"
+#     }
+# }
 # application home page (will override Website Settings)
 # home_page = "login"
 
@@ -144,7 +175,11 @@ app_license = "mit"
 # 		"on_trash": "method"
 # 	}
 # }
-
+# doc_events = {
+#     "Work Order": {
+#         "after_insert": "kk_new_app.api.work_order_scheduler.auto_schedule_work_order",
+#     }
+# }
 # Scheduled Tasks
 # ---------------
 
@@ -242,3 +277,15 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+# website_route_rules = [
+#     {"from_route": "/work-order-calendar", "to_route": "kk_new_app.www.work_order_calendar"},
+# ]
+
+# # Create a page for the work order calendar
+# website_pages = [
+#     {
+#         "page_name": "work_order_calendar",
+#         "title": "Work Order Calendar",
+#         "route": "work_order_calendar",
+#     }
+# ]
